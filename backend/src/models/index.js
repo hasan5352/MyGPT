@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+
+// db setup
 let sequelize = new Sequelize({
   database: process.env.DB_NAME,
   username: process.env.DB_USER,
