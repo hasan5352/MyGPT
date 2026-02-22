@@ -1,10 +1,12 @@
 import Dropdown from './Dropdown';
 import './Thread.css'
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import DeleteModal from '../DeleteModal/DeleteModal';
+import { MyContext } from '../MyContext';
 
-export default function Thread({thread, k, setAllThreads, currThreadId, createNewChat}){
-  // (thread.threadId === currThreadId ? "highlighted": " ")
+export default function Thread({thread, k, setAllThreads, createNewChat}){
+  const {currThreadId, setCurrThreadId} = useContext(MyContext);
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const dropDownDltBtnRef = useRef(null);
@@ -21,7 +23,8 @@ export default function Thread({thread, k, setAllThreads, currThreadId, createNe
   }, []);
 
   return (
-    <div key={k} className={"thread"} // onClick={(e) => changeThread(thread.threadId)}
+    <div key={k} className={"thread" + (currThreadId === thread.id? ' highlight': '')} 
+      // onClick={(e) => changeThread(thread.threadId)}
     > 
       
       <p className="title"> {thread.title} </p>

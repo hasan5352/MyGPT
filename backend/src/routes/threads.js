@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/', asyncHandler( async (req, res)=>{
   const threads = await Thread.findAll({where:{userId: req.user.id}, attributes:['id', 'title']});
-  sendJson(res, "Threads successfully retreived.", {threads}, true, 200);
+  sendJson(res, "Threads retreival successful.", {threads});
 }));
 
 router.post('/', asyncHandler( async (req, res)=>{
@@ -31,7 +31,7 @@ router.post('/', asyncHandler( async (req, res)=>{
   
   await Message.bulkCreate(msgs)
 
-  sendJson(res, "AI response successfully generated", {aiResponse, title, threadId: thread.id}, true, 200)
+  sendJson(res, "AI response generation successful", {aiResponse, title, threadId: thread.id})
 }));
 
 router.post('/:threadId', asyncHandler( async (req, res)=>{
@@ -58,7 +58,7 @@ router.post('/:threadId', asyncHandler( async (req, res)=>{
   ]
   
   await Message.bulkCreate(msgs)
-  sendJson(res, "AI response successfully generated", { aiResponse }, true, 200);
+  sendJson(res, "AI response successfully generated", { aiResponse });
 }));
 
 router.get('/:threadId', asyncHandler( async (req, res)=>{
@@ -72,7 +72,7 @@ router.get('/:threadId', asyncHandler( async (req, res)=>{
   }
 
   const messages = await Message.findAll({ where: {threadId: id}, attributes:['role', 'content'] })
-  sendJson(res, `Thread successfully retreived.`, {title: thread.title, messages}, true);
+  sendJson(res, `Thread successfully retreived.`, {title: thread.title, messages});
 }));
 
 router.delete('/:threadId', asyncHandler( async (req, res)=>{
@@ -87,7 +87,7 @@ router.delete('/:threadId', asyncHandler( async (req, res)=>{
   await Message.destroy({ where: {threadId: id}});
   await Thread.destroy({ where: {id: id}});
 
-  sendJson(res, `Thread ${id} successfully deleted.`, {}, true, 200);
+  sendJson(res, `Thread ${id} successfully deleted.`, {});
 }));
 
 

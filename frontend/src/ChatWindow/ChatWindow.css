@@ -69,9 +69,7 @@ input {
                 rgba(0, 0, 0, 0.05) 0 -3px 5px;
 }
 
-input:focus {
-    outline: none;
-}
+input:focus { outline: none; }
 
 #submit {
     cursor: pointer;
@@ -85,9 +83,7 @@ input:focus {
     justify-content: center;
 }
 
-#submit i:hover {
-    color: #fff;
-}
+#submit i:hover {color: #fff;}
 
 .info {
     font-size: 0.8rem;
@@ -117,7 +113,6 @@ input:focus {
     padding: 0.5rem 0.2rem;
     cursor: pointer;
 }
-
 
 .dropDownItem:hover {
     background-color: rgba(180, 180, 180, 0.1);

@@ -20,21 +20,11 @@ router.post('/signup', asyncHandler(async (req, res)=>{
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-
   const user = await User.create({email, password: hashedPassword});
 
   const token = generateToken({id: user.id});
-  
-  res.cookie('token', token, {
-    httpOnly: true,
-    secure: process.env.IsProduction === 'true',
-    sameSite: 'strict',
-    maxAge: 1000 * 60 * 60
-  });
-
-  return sendJson(res, "Signup successful", {token}, true, 200);    // remove token in prod
+  return sendJson(res, "Signup successful", {token});
 }));
-
 
 router.post('/login', asyncHandler(async (req, res)=>{
   const { email, password } = req.body;
@@ -47,19 +37,11 @@ router.post('/login', asyncHandler(async (req, res)=>{
   }
 
   const token = generateToken({id: user.id});
-
-  res.cookie('token', token, {
-    httpOnly: true,
-    secure: process.env.IsProduction === 'true',
-    sameSite: 'strict',
-    maxAge: 1000 * 60 * 60
-  });
-
-  return sendJson(res, "Login successful", {token}, true, 200);    // remove token in prod
+  return sendJson(res, "Login successful", {token});
 }));
 
 router.post('/verify', jwtAuthMiddleware, asyncHandler(async (req, res)=>{
-  sendJson(res, "User verified", {}, true, 200)
+  sendJson(res, "Verification successful", {})
 }));
 
 export default router;

@@ -27,8 +27,7 @@ router.delete('/', asyncHandler( async (req, res)=>{
   await Thread.destroy({where: {userId}})
   await User.destroy({where: {id: userId}});
 
-  sendJson(res, "User Sucessfully Deleted.", {}, true, 200)
-  res.clearCookie('token')
+  sendJson(res, "User Sucessfully Deleted.", {})
 }));
 
 export default router;
