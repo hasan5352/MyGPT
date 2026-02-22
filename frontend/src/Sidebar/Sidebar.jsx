@@ -31,10 +31,15 @@ function Sidebar() {
 				<span><i className="fa-solid fa-pen-to-square"></i></span>
 			</div>
 
-			<Thread thread={{threadId: 1, title: "Ship Wreck"}} k={0} setAllThreads={setAllThreads}
-				createNewChat={createNewChat} currThreadId={currThreadId}
-			/>
-			{/* {allThreads.map((thread, idx) => <Thread setAllThreads={setAllThreads} thread={thread} k={idx} />) } */}
+			{allThreads?.map((thread, idx) => (
+				<Thread
+					key={thread.id || idx}
+					thread={thread}
+					k={idx}
+					setAllThreads={setAllThreads}
+					createNewChat={createNewChat}
+				/>
+			))}
 		</section>
 	)
 }

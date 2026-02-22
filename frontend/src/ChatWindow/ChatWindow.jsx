@@ -34,6 +34,8 @@ function ChatWindow() {
                     { role: 'user', content: prompt },
                     { role: 'robot', content: aiResponse }
                 ]);
+                // Prevent the reply-effect from appending the same messages again
+                setPrompt('');
                 // prepend new thread to list
                 setAllThreads(prev => [{ id: threadId, title }, ...(prev || [])]);
             } else {

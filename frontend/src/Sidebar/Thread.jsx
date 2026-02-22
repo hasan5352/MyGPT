@@ -5,7 +5,7 @@ import DeleteModal from '../DeleteModal/DeleteModal';
 import { MyContext } from '../MyContext';
 
 export default function Thread({thread, k, setAllThreads, createNewChat}){
-  const {currThreadId, setCurrThreadId} = useContext(MyContext);
+  const {currThreadId, changeThread} = useContext(MyContext);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -23,8 +23,8 @@ export default function Thread({thread, k, setAllThreads, createNewChat}){
   }, []);
 
   return (
-    <div key={k} className={"thread" + (currThreadId === thread.id? ' highlight': '')} 
-      // onClick={(e) => changeThread(thread.threadId)}
+    <div key={k} className={"thread" + (currThreadId === thread.id? ' highlight': '')}
+      onClick={() => changeThread(thread.id)}
     > 
       
       <p className="title"> {thread.title} </p>

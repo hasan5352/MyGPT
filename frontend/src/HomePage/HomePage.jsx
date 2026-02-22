@@ -41,7 +41,8 @@ export default function HomePage(){
     newChat, setNewChat,
     prevChats, setPrevChats,
     allThreads, setAllThreads,
-    createNewChat
+    createNewChat,
+    changeThread
   }; 
 
   return (
