@@ -1,12 +1,19 @@
 .sidebar {
+    /* relative sidebar width so other components can offset using the same variable */
+    --sidebar-width: 20rem; /* ~320px, change only this if you want a different proportional width */
     background-color: #171717;
     color: #b4b4b4;
     height: 100vh;
-    width: 320px;
+    width: var(--sidebar-width);
     display: flex;
     gap: .4rem;
     flex-direction: column;
     padding: 1rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 20;
+    overflow-y: auto;
 }
 
 .logo {
