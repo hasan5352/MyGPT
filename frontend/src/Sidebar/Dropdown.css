@@ -1,0 +1,27 @@
+.dropdown{
+  background-color: rgb(52, 52, 52);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  width: 8rem;
+
+  position: absolute;
+  top: 1.5rem;
+  left: 11rem;
+  z-index: 3;
+}
+
+.dropdown button{
+  margin: 0;
+  border: none;
+  border-radius: .4rem;
+}
+
+.dropdown button:hover{
+  background-color: rgba(183, 178, 178, 0.12);
+}
+
+.dropdown button:active{
+  background-color: rgba(120, 120, 120, 0.12);
+}

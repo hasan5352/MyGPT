@@ -1,0 +1,36 @@
+
+.thread {
+  display: flex;
+  justify-content: space-between;
+
+  cursor: pointer;
+  padding: 2px 5px;
+  margin-bottom: 0.3rem;
+  font-size: 14px;
+  border: solid 10px transparent;
+  position: relative;
+}
+
+.thread:hover {
+  background-color: rgba(180, 180, 180, 0.05);
+  border-radius: 10px;
+}
+
+.thread .title {
+  margin: 0;
+}
+
+.highlighted {
+  background-color: rgba(180, 180, 180, 0.05);
+  border-radius: 10px;
+}
+
+.fa-ellipsis-v {
+  opacity: 0;
+  font-size: 1rem;
+}
+
+.thread:hover .fa-ellipsis-v {
+  opacity: .8;
+  color: #fff;
+}

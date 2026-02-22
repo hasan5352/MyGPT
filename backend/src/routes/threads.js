@@ -87,7 +87,7 @@ router.delete('/:threadId', asyncHandler( async (req, res)=>{
   await Message.destroy({ where: {threadId: id}});
   await Thread.destroy({ where: {id: id}});
 
-  sendJson(res, `Thread ${id} successfully deleted.`, {}, true);
+  sendJson(res, `Thread ${id} successfully deleted.`, {}, true, 200);
 }));
 
 

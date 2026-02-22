@@ -1,0 +1,11 @@
+* {
+    color: #ececec;
+    font-family: cursive
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #212121;
+}

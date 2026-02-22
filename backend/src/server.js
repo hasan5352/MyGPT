@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 
 app.use('/api/auth', authRoutes);
-app.use('/api/user', jwtAuthMiddleware, userRoutes);
+app.use('/api/users', jwtAuthMiddleware, userRoutes);
 app.use('/api/threads', jwtAuthMiddleware, threadRoutes);
 
 

@@ -1,0 +1,47 @@
+
+.delete-modal{
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(52, 52, 52, 0.5);
+  border-radius: 1rem;
+  padding: 0 1rem 1rem 1rem;
+  width: 20rem;
+}
+
+.delete-modal p{
+  font-size: 1rem;
+  word-spacing: .15rem;
+}
+
+.delete-modal div{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.delete-modal button {
+  background-color: blueviolet;
+  border-radius: 1.2rem !important;
+}
+
+.delete-modal .cancel-btn{
+  background-color: rgb(47, 47, 47);
+  border: 1px solid #dddddddd;
+}
+
+.delete-modal .delete-btn{
+  background-color: red;
+}
+
+.delete-modal .delete-btn:hover{
+  opacity: .8;
+  background-color: red;
+}
+
+.delete-modal button:hover{
+  opacity: .6;
+}
