@@ -1,41 +1,37 @@
 .chats {
-    /* occupy the area to the right of the fixed sidebar and center content */
-    width: calc(100% - var(--sidebar-width));
-    margin-left: var(--sidebar-width);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 4rem 1rem 10rem; /* top, sides, bottom (space for navbar + input) */
-    max-width: none;
+    flex: 1;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
 }
 
-/* user message container aligned to the right edge of the chat column */
+.chats::-webkit-scrollbar {
+  display: none;                /* Chrome/Safari */
+}
+
 .userDiv {
     display: flex;
     justify-content: flex-end;
     font-size: 0.9rem;
-    width: 100%;
 }
 
-/* assistant messages align left and are constrained to a readable width */
+
 .gptDiv {
     text-align: left;
     font-size: 0.9rem;
-    width: 100%;
-    max-width: 700px;
 }
 
-/* user message bubble: remove fixed left margin, limit width */
 .userMessage {
     background-color: #323232;
     padding: 10px 20px;
     border-radius: 14px;
-    max-width: 70%;
+    margin-left: 15rem;
+    max-width: 500px;
     width: fit-content;
 }
 
-/* keep code block styling */
 .hljs {
     border-radius: 14px !important;
 }

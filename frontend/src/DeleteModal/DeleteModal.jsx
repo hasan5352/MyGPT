@@ -1,21 +1,22 @@
 import './DeleteModal.css';
 import axios from 'axios';
+import { MyContext } from '../MyContext';
+import { useContext } from 'react';
 
-export default function DeleteModal({thread, setAllThreads, currThreadId, createNewChat, dltModalRef, setDeleteModalOpen}) {
+export default function DeleteModal({thread, dltModalRef, setDeleteModalOpen}) {
+  const {currThreadId, createNewChat, setAllThreads, navigateToAuthPage} = useContext(MyContext);
+
   async function deleteThread() {
     try{
       const response = await axios.delete(`/api/threads/${thread.id}`);
       console.log(response);
       
-      if (!response.ok && response.message.lower() == 'unauthorized') {
-        // redirect to login page
-      }
       // refresh sidebar
-      setAllThreads(prev => prev.filter(thrd => thrd.id !== thread.id));
-      // if(thread.id === currThreadId) createNewChat();
-
+      if(thread.id === currThreadId) createNewChat();
+      setAllThreads(prev => (prev.filter(thrd => thrd.id !== thread.id)));
     } catch (err) {
       console.log(err);
+      if (err.status == 401) navigateToAuthPage();
     }
   }
   

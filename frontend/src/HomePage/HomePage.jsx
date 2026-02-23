@@ -4,6 +4,7 @@ import ChatWindow from "../ChatWindow/ChatWindow.jsx";
 import {MyContext} from "../MyContext.jsx";
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage(){
   const [prompt, setPrompt] = useState("");
@@ -12,6 +13,9 @@ export default function HomePage(){
   const [prevChats, setPrevChats] = useState([]); //stores all chats of curr threads
   const [newChat, setNewChat] = useState(true);
   const [allThreads, setAllThreads] = useState([]);
+  const navigate = useNavigate();
+
+  const navigateToAuthPage = () => {navigate('/auth')};
 
   function createNewChat(){
     setCurrThreadId(''); setNewChat(true);
@@ -19,19 +23,19 @@ export default function HomePage(){
   }
 
   const changeThread = async (id) => {
-      setCurrThreadId(id);
-  
-      try {
-        const response = await axios.get(`/api/threads/${id}`);
-        const body = response.data.body || {};
-        const messages = body.messages || [];
-        // messages are { role, content } objects
-        setPrevChats(messages);
-        setNewChat(false);
-        setReply(null);
-      } catch(err) {
-        console.log(err);
-      }
+    setCurrThreadId(id);
+
+    try {
+      const response = await axios.get(`/api/threads/${id}`);
+      const body = response.data.body || {};
+      const messages = body.messages || [];
+      // messages are { role, content } objects
+      setPrevChats(messages);
+      setNewChat(false);
+      setReply(null);
+    } catch(err) {
+      console.log(err);
+    }
   }   
 
   const providerValues = {
@@ -41,15 +45,15 @@ export default function HomePage(){
     newChat, setNewChat,
     prevChats, setPrevChats,
     allThreads, setAllThreads,
-    createNewChat,
-    changeThread
+    createNewChat, changeThread, 
+    navigateToAuthPage
   }; 
 
   return (
     <div className='home-page'>
       <MyContext.Provider value={providerValues}>
-          <Sidebar></Sidebar>
-          <ChatWindow></ChatWindow>
+        <Sidebar></Sidebar>
+        <ChatWindow></ChatWindow>
       </MyContext.Provider>
     </div>
   );

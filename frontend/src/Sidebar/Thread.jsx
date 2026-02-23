@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import DeleteModal from '../DeleteModal/DeleteModal';
 import { MyContext } from '../MyContext';
 
-export default function Thread({thread, k, setAllThreads, createNewChat}){
+export default function Thread({ thread }){
   const {currThreadId, changeThread} = useContext(MyContext);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -23,21 +23,14 @@ export default function Thread({thread, k, setAllThreads, createNewChat}){
   }, []);
 
   return (
-    <div key={k} className={"thread" + (currThreadId === thread.id? ' highlight': '')}
+    <div className={"thread" + (currThreadId === thread.id? ' highlight': '')}
       onClick={() => changeThread(thread.id)}
     > 
-      
       <p className="title"> {thread.title} </p>
-
       <i className="fa-solid fa-ellipsis-v"  onClick={() => setDropdownOpen(true)} />
       
       {dropdownOpen && <Dropdown dropDownDltBtnRef={dropDownDltBtnRef} setDeleteModalOpen={setDeleteModalOpen} />}
-
-      {deleteModalOpen &&
-        <DeleteModal thread={thread} setAllThreads={setAllThreads} setDeleteModalOpen={setDeleteModalOpen}
-          createNewChat={createNewChat} currThreadId={currThreadId} dltModalRef={dltModalRef}
-        />
-      }
+      {deleteModalOpen && <DeleteModal thread={thread} setDeleteModalOpen={setDeleteModalOpen} dltModalRef={dltModalRef} />}
     </div>
   );
 }
