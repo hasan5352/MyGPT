@@ -2,11 +2,13 @@ import './HomePage.css';
 import Sidebar from "../Sidebar/Sidebar.jsx";
 import ChatWindow from "../ChatWindow/ChatWindow.jsx";
 import {MyContext} from "../MyContext.jsx";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 export default function HomePage(){
+  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("token")}`;
+
   const [prompt, setPrompt] = useState("");
   const [reply, setReply] = useState(null);
   const [currThreadId, setCurrThreadId] = useState('');
@@ -47,7 +49,18 @@ export default function HomePage(){
     allThreads, setAllThreads,
     createNewChat, changeThread, 
     navigateToAuthPage
-  }; 
+  };
+
+  async function navToAuthIfInvalidUser() {
+    if (!localStorage.getItem("token")) navigate('/auth'); 
+    try {
+      await axios.post('/api/auth/verify');
+    } catch (err) {
+      console.log(err); navigate('/auth');
+    }
+  }
+
+  useEffect(()=>{navToAuthIfInvalidUser()}, [])
 
   return (
     <div className='home-page'>

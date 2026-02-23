@@ -6,7 +6,7 @@ import {Routes, Route} from 'react-router'
 function App() {
   return (
     <Routes>
-      <Route index element={<HomePage />} />
+      <Route index element={ <HomePage /> } />
       <Route path='/auth' element={<AuthPage />} />
     </Routes>
   );
