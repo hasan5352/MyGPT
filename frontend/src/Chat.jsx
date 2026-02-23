@@ -1,9 +1,10 @@
 import "./Chat.css";
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { MyContext } from "./MyContext";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
+import remarkGfm from "remark-gfm";
 
 function Chat() {
 	const {newChat, prevChats, reply} = useContext(MyContext);
@@ -31,21 +32,21 @@ function Chat() {
 				<div className={chat.role === "user"? "userDiv" : "gptDiv"} key={idx}>
 					{chat.role === "user"? 
 						<p className="userMessage">{chat.content}</p> : 
-						<ReactMarkdown rehypePlugins={[rehypeHighlight]}>{chat.content}</ReactMarkdown>
+						<ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{chat.content}</ReactMarkdown>
 					}
 				</div>
 			)}
 
-				{prevChats.length > 0  && (
-					<>
-						{latestReply === null ? 
-							(<div className="gptDiv" key={"non-typing"} >
-								<ReactMarkdown rehypePlugins={[rehypeHighlight]}>{prevChats[prevChats.length-1].content}</ReactMarkdown>
-							</div>) : 
-							(<div className="gptDiv" key={"typing"} ><ReactMarkdown rehypePlugins={[rehypeHighlight]}>{latestReply}</ReactMarkdown> </div>)
-						}
-					</>
-				)}
+			{prevChats.length > 0  && (
+				<>
+					{latestReply === null ? 
+						(<div className="gptDiv" key={"non-typing"} >
+							<ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{prevChats[prevChats.length-1].content}</ReactMarkdown>
+						</div>) : 
+						(<div className="gptDiv" key={"typing"} ><ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{latestReply}</ReactMarkdown> </div>)
+					}
+				</>
+			)}
 		</div>
 	)
 }	
