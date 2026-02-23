@@ -11,7 +11,7 @@ function Sidebar() {
 
 	const getAllThreads = async () => {
 		try {
-			const response = await axios.get("/api/threads");	// clear header - for testing
+			const response = await axios.get("/api/threads");
 			const threads = response.data.body.threads;
 			setAllThreads(threads);
 		} catch(err) {
@@ -31,7 +31,9 @@ function Sidebar() {
 				<span><i className="fa-solid fa-pen-to-square"></i></span>
 			</div>
 
-			{allThreads?.map((thread, idx) => ( <Thread key={thread.id || idx} thread={thread} /> ))}
+			<div className="thread-library">
+				{allThreads?.map((thread, idx) => ( <Thread key={thread.id || idx} thread={thread} /> ))}
+			</div>
 		</section>
 	)
 }

@@ -8,6 +8,15 @@
     padding: 1rem;
 }
 
+.thread-library{
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.thread-library::-webkit-scrollbar{
+    display: none;
+}
+
 .logo {
     height: 25px;
     width: 25px;

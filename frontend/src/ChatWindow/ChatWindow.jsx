@@ -73,7 +73,9 @@ function ChatWindow() {
 
 				{ dropdownOpen && 
 					<div className="dropDown">
-						<div className="dropDownItem" ref={logoutBtnRef} onClick={()=>{setDropdownOpen(false); navigate('/auth')}}>
+						<div className="dropDownItem" ref={logoutBtnRef} 
+							onClick={()=>{setDropdownOpen(false); localStorage.setItem('token', ''); navigate('/auth')}}
+							>
 							<i className="fa-solid fa-arrow-right-from-bracket"></i> Log out
 						</div>
 					</div>

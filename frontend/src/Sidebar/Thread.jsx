@@ -11,6 +11,17 @@ export default function Thread({ thread }){
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const dropDownDltBtnRef = useRef(null);
   const dltModalRef = useRef(null);
+  const elipsesRef = useRef(null);
+  const [dropdownStyle, setDropdownStyle] = useState({});
+
+  function openDropdown(e) {
+    const rect = elipsesRef.current.getBoundingClientRect();
+
+    setDropdownStyle({ position: "fixed", top: rect.bottom + 4 + "px",   left: rect.left + "px" });
+
+    setDropdownOpen(true);
+  }
+
   
   useEffect(() => {
     function removeDropdownAndModal(e) {
@@ -24,12 +35,14 @@ export default function Thread({ thread }){
 
   return (
     <div className={"thread" + (currThreadId === thread.id? ' highlight': '')}
-      onClick={() => changeThread(thread.id)}
+      onClick={(e) => { 
+        if (elipsesRef.current && !elipsesRef.current.contains(e.target)) changeThread(thread.id)
+      }}
     > 
       <p className="title"> {thread.title} </p>
-      <i className="fa-solid fa-ellipsis-v"  onClick={() => setDropdownOpen(true)} />
+      <i ref={elipsesRef} className="fa-solid fa-ellipsis-v"  onClick={openDropdown} />
       
-      {dropdownOpen && <Dropdown dropDownDltBtnRef={dropDownDltBtnRef} setDeleteModalOpen={setDeleteModalOpen} />}
+      {dropdownOpen && <Dropdown dropDownDltBtnRef={dropDownDltBtnRef} setDeleteModalOpen={setDeleteModalOpen} style={dropdownStyle} />}
       {deleteModalOpen && <DeleteModal thread={thread} setDeleteModalOpen={setDeleteModalOpen} dltModalRef={dltModalRef} />}
     </div>
   );
