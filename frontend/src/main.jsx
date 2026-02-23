@@ -5,8 +5,8 @@ import App from './App.jsx'
 import "./index.css";
 import axios from 'axios';
 
-// set axios auth header globally from stored token (will be overridden if Sidebar also sets it)
-axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+// set axios base URL
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_API_URL;
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

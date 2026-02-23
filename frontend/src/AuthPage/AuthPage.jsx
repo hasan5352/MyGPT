@@ -67,7 +67,7 @@ export default function AuthPage(){
         </div>
 
         <p className={'auth-warning' + (warningOn? '' : ' display-none')}>
-          {authMode === 'signup'? 'Account already exists. Try logging in.' : 'Invalid Credentials. Try again.'}
+          {authMode === 'signup'? 'Account already exists. Try logging in.' : 'Invalid credentials or user does not exist.'}
         </p>
 
         {authMode === 'login'?

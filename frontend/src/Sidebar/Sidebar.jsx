@@ -6,7 +6,9 @@ import axios from "axios";
 
 
 function Sidebar() {
+	// set axios auth header globally from stored token (will be overridden if Sidebar also sets it)
 	axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("token")}`;
+
 	const {createNewChat, allThreads, setAllThreads, currThreadId, navigateToAuthPage} = useContext(MyContext);
 
 	const getAllThreads = async () => {
