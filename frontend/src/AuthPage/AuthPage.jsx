@@ -27,12 +27,10 @@ export default function AuthPage(){
       const response = await axios.post(`/api/auth/${route}`, { email, password });
       const token = response.data.body.token;
       localStorage.setItem('token', token);
-
-      console.log(response)
-
-      console.log(`${route} success`);
       navigate("/");
-
+      
+      // console.log(response)
+      // console.log(`${route} success`);
     } catch (err) {
       console.error(err.response.data.message, err);
       setWarningOn(true)

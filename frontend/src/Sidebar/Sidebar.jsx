@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { MyContext } from "../MyContext.jsx";
 import Thread from "./Thread.jsx";
 import axios from "axios";
-
+import logo from '../assets/blacklogo.png';
 
 function Sidebar() {
 	// set axios auth header globally from stored token (will be overridden if Sidebar also sets it)
@@ -29,7 +29,7 @@ function Sidebar() {
 		<section className="sidebar">
 			
 			<div className={"thread" + (currThreadId === ''? ' highlight': '')} onClick={createNewChat}>
-				<img src="src/assets/blacklogo.png" alt="gpt logo" className="logo"></img> New Chat
+				<img src={logo} alt="gpt logo" className="logo"></img> New Chat
 				<span><i className="fa-solid fa-pen-to-square"></i></span>
 			</div>
 

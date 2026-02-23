@@ -9,7 +9,7 @@ export default function DeleteModal({thread, dltModalRef, setDeleteModalOpen}) {
   async function deleteThread() {
     try{
       const response = await axios.delete(`/api/threads/${thread.id}`);
-      console.log(response);
+      // console.log(response);
       
       // refresh sidebar
       if(thread.id === currThreadId) createNewChat();
