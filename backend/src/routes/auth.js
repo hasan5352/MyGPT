@@ -11,11 +11,18 @@ dotenv.config()
 const router = express.Router();
 
 router.post('/signup', asyncHandler(async (req, res)=>{
+  const error = Error();
+  error.statusCode = 401;
+
   const { email, password } = req.body;
+  
+  if (!email || !password) {
+    error.message = 'password and email are required.';
+    throw error;
+  }
 
   if (await User.findOne({where: {email}})) {
-    const error = Error('Account already exists.');
-    error.statusCode = 401;
+    error.message = 'Account already exists.';
     throw error;
   }
 
