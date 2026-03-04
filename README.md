@@ -2,6 +2,8 @@
 
 An AI-powered conversational platform designed to provide intelligent, real-time chat capabilities with message persistence and multi-threaded conversations.
 
+- Access here: https://mygpt-frontend-zshn.onrender.com
+
 ## Overview
 
 Helix is a full-stack web application that enables users to have interactive conversations with AI assistants while maintaining organized conversation history. The platform supports multiple AI providers and offers robust user authentication and data management.
