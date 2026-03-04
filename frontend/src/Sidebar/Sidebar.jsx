@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { MyContext } from "../MyContext.jsx";
 import Thread from "./Thread.jsx";
 import axios from "axios";
-import logo from '../assets/blacklogo.png';
+import logo from '../assets/helix-logo.jpg';
 
 function Sidebar() {
 	// set axios auth header globally from stored token (will be overridden if Sidebar also sets it)

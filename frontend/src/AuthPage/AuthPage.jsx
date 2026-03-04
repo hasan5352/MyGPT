@@ -41,7 +41,7 @@ export default function AuthPage(){
 
   return (
     <main className='auth-page'>
-      <h1>Welcome To MyGPT!</h1>
+      <h1>Welcome To Helix!</h1>
 
       <form className='auth-form' onSubmit={(e) => {authenticate(e, authMode)}}>
         <div className='auth-change'>
