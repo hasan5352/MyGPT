@@ -433,7 +433,7 @@ The API returns consistent error responses:
 {
   "success": false,
   "message": "Error description",
-  "error": "Detailed error information"
+  "body": {}
 }
 ```
 
